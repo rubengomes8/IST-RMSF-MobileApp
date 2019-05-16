@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">fire</string>
+    <string name="hint_pw">Password</string>
+    <string name="hint_confirmpw">Confirm Password</string>
+    <string name="hint_user">Username</string>
+    <string name="login_btn">Login</string>
+    <string name="signup_btn">Sign Up</string>
+    <string name="create_btn">Create Account</string>
+    <string name="title_activity_admin_thresholds">AdminThresholds</string>
+    <string name="hint_humidity">Humidity</string>
+    <string name="hint_temperature">Temperature</string>
+    <string name="apply_btn">Apply</string>
+    <string name="title_activity_sign_up">SignUp</string>
+
+
+</resources>

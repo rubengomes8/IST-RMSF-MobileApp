@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:background="@color/colorBackground"
+    tools:context=".Activities.SignUp">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+       <!-- <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Sign Up"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="@android:style/TextAppearance.WindowTitle"
+            android:visibility="visible"
+            android:textColor="#FFFFFF"/> -->
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <EditText
+        android:id="@+id/usernameBox"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/hint_user"
+        android:textColorHint="#B1A1A1"
+        android:textColor="#B1A1A1"
+        android:textSize="20sp"
+        android:drawableLeft="@drawable/ic_action_user"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/passwordBox1"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/usernameBox"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/hint_pw"
+        android:textColorHint="#B1A1A1"
+        android:drawableLeft="@drawable/ic_action_pass"
+        android:textSize="20sp"
+        android:textColor="#B1A1A1"
+        android:inputType="textPassword" />
+
+
+    <EditText
+        android:id="@+id/passwordBox2"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/passwordBox1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:hint="@string/hint_confirmpw"
+        android:textColorHint="#B1A1A1"
+        android:drawableLeft="@drawable/ic_action_pass"
+        android:textSize="20sp"
+        android:textColor="#B1A1A1"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/createButton"
+        android:layout_below="@id/passwordBox2"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_corner_button"
+        android:textSize="20sp"
+        android:text="@string/create_btn"
+        android:textColor="#ffffff">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/SignUpUsernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#B1A1A1"
+        />
+
+    <TextView
+        android:id="@+id/SignUpPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:layout_below="@id/usernameBox"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#B1A1A1"
+        />
+
+    <TextView
+        android:id="@+id/SignUpPassword2TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirmation"
+        android:layout_below="@id/passwordBox1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#B1A1A1"
+        />
+
+
+
+</RelativeLayout>
