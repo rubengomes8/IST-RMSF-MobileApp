@@ -9,8 +9,10 @@
     <string name="title_activity_admin_thresholds">AdminThresholds</string>
     <string name="hint_humidity">Humidity</string>
     <string name="hint_temperature">Temperature</string>
+    <string name="hint_gas">Gas</string>
     <string name="apply_btn">Apply</string>
     <string name="title_activity_sign_up">SignUp</string>
+    <string name="title_activity_fires">Fires</string>
 
 
 </resources>

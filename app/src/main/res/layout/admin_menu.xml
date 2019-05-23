@@ -10,11 +10,13 @@
     android:background="@color/colorBackgroundAdminMenu"
     tools:context=".Activities.MenuAdmin" >
 
+
+
  <ListView
      android:id="@+id/menuListView"
      android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     >
+     android:layout_height="match_parent">
+
 
  </ListView>
 

@@ -30,14 +30,19 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.HashSet;
 
+/* user */
 public class UserDevices extends AppCompatActivity {
 
     private User user;
     private String username;
+    private int secret;
+    private String password;
     private ArrayList<String> listLocals;
     private ArrayList<Device> listDevices;
     private ArrayAdapter<String> adapter;
+    private HashMap<String,Integer> devSet;
     ListView lv;
     private String URL;
     FloatingActionButton fab;
@@ -50,19 +55,28 @@ public class UserDevices extends AppCompatActivity {
 
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
+        password = intent.getStringExtra("password");
+        secret = intent.getIntExtra("secret", 0);
+
 
         lv = findViewById(R.id.listView);
         fab = findViewById(R.id.fab);
 
-        getSupportActionBar().setTitle("Devices");
+        if(secret > 0) //Admin -> retirar o float action button para adicionar 1 device
+        {
+            fab.hide();
+        }
+
+        getSupportActionBar().setTitle("Devices of "+username);
         //deviceList = new ArrayList<Device>();
         listLocals = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(UserDevices.this, android.R.layout.simple_list_item_1, listLocals);
-        lv.setAdapter(adapter);
+        devSet = new HashMap<>();
 
-  /**************************************************************************************************************************************************
+        adapter = new ArrayAdapter<String>(UserDevices.this, android.R.layout.simple_list_item_1, listLocals);
+        //lv.setAdapter(adapter);
+
         //Fazer Post para receber a lista de todos os devices do user
-        URL = "http://10.0.2.2:8000/app/devices";
+        URL = "https://fire-240718.appspot.com/app/devices/";
         //manda POST com username e recebe os seus devices
         final StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
@@ -77,14 +91,14 @@ public class UserDevices extends AppCompatActivity {
 
                         //processa cada objeto e cria uma lista de Strings ou de devices e faz set do adapter
                         for (int i= 0; i< array.length(); i++){
-                            listDevices.add(new Device(
-                                    array.getJSONObject(i).getString("username"),
-                                    array.getJSONObject(i).getString("token"),
-                                    array.getJSONObject(i).getString("localization"),
-                                    Integer.parseInt(array.getJSONObject(i).getString("id")))); //!!!Não sei muito bem se é este o nome do id ou se vem com _id
+                            JSONObject aux = new JSONObject(array.getJSONObject(i).getString("fields"));
+                            devSet.put(aux.getString("localization"),Integer.parseInt(aux.getString("token")));
 
-                            listLocals.add(array.getJSONObject(i).getString("localization"));
+                            listLocals.add(aux.getString("localization"));
                         }
+
+                        lv.setAdapter(adapter);
+
 
                     }
                     catch(JSONException e)
@@ -108,29 +122,26 @@ public class UserDevices extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("username", username);
+                parameters.put("password", password);
                 return parameters;
             }
         };
 
         RequestQueue rQueue = Volley.newRequestQueue(UserDevices.this);
         rQueue.add(request);
-**************************************************************************************************************************/
         //Construir a lista com os items corretos
-        listLocals.add("Presentation Room");
-        listLocals.add("Meeting Room");
-        listLocals.add("Interviews Room");
-        listLocals.add("Open Space");
-        listLocals.add("Computers Room");
-        listLocals.add("CEO Room");
-        listLocals.add("WC Men");
-        listLocals.add("WC Women");
-        lv.setAdapter(adapter);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Add a new device 1", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent intent = new Intent(UserDevices.this, AddDevice.class);
+                intent.putExtra("username", username);
+                intent.putExtra("password", password);
+                startActivity(intent);
+
             }
         });
 
@@ -140,15 +151,17 @@ public class UserDevices extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        String option = String.valueOf(parent.getItemAtPosition(position));
                         //Toast.makeText(UserDevices.this, option, Toast.LENGTH_LONG).show();
 
-                        //int token = getDeviceToken(option, listDevices);
-                        int token = 2;
+                        String option = String.valueOf(parent.getItemAtPosition(position));
+                        int token = devSet.get(option);
+
                         //Começa uma nova actividade onde envia o token e o username
-                        Intent intent = new Intent(UserDevices.this, AdminUserDeviceState.class);
+                        Intent intent = new Intent(UserDevices.this, DeviceState.class);
                         intent.putExtra("token", token);
+                        intent.putExtra("secret", secret);
                         intent.putExtra("username", username);
+                        intent.putExtra("password", password);
                         intent.putExtra("local", option);
                         startActivity(intent);
 

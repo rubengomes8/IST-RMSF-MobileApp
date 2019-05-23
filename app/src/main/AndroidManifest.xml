@@ -12,7 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.AdminUserDeviceState"></activity>
+        <activity android:name=".Activities.NewDeviceAdmin"></activity>
+        <activity android:name=".Activities.AddDescription" />
+        <activity android:name=".Activities.AllFiresAdmin" />
+        <activity
+            android:name=".Activities.Fires"
+            android:label="@string/title_activity_fires"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.AddDevice" />
         <activity android:name=".Activities.DeviceState" />
         <activity android:name=".Activities.UserDevices" />
         <activity android:name=".Activities.UserList" />
@@ -33,6 +40,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.MenuAdmin" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/fire_logo" />

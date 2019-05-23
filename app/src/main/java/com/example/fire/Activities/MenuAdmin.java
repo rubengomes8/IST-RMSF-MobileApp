@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class MenuAdmin extends AppCompatActivity {
 
-    private String [] menuAdminOptions = {"Users", "Fires", "Thresholds"};
+    private String [] menuAdminOptions = {"Users", "Fires", "Thresholds", "AllDevices"};
     int secret;
     private int humidityTh;
     private int temperatureTh;
@@ -77,16 +77,25 @@ public class MenuAdmin extends AppCompatActivity {
                         else if(option.equals("Fires"))
                         {
                             //Fazer um POST com o secret e receber um JSONArray com todos os devices
-                            Intent intent2 = new Intent(MenuAdmin.this, AdminThresholds.class);
+                            Intent intent2 = new Intent(MenuAdmin.this, AllFiresAdmin.class);
                             intent2.putExtra("secret", secret);
                             startActivity(intent2);
                         }
+
+                        else if(option.equals("AllDevices"))
+                        {
+                            //Fazer um POST com o secret e receber um JSONArray com todos os devices
+                            Intent intent2 = new Intent(MenuAdmin.this, AllDevicesAdmin.class);
+                            intent2.putExtra("secret", secret);
+                            startActivity(intent2);
+                        }
+
                         else if(option.equals("Thresholds"))
                         {
 
                             //Fazer Post para receber os valores dos thresholds
                             Log.d("checkbox", "Não sou Admin");
-                            URL = "http://10.0.2.2:8000/admin/thresholds"; //
+                            URL = "https://fire-240718.appspot.com/admin/thresholds/"; //
 
                             //manda POST com secret e recebe 2 thresholds (humidity, temperature)
 
@@ -127,6 +136,8 @@ public class MenuAdmin extends AppCompatActivity {
                                 @Override
                                 protected Map<String, String> getParams() throws AuthFailureError {
                                     Map<String, String> parameters = new HashMap<String, String>();
+
+                                    Log.d("secretC", Integer.toString(secret));
                                     parameters.put("secret", Integer.toString(secret));
                                     return parameters;
                                 }

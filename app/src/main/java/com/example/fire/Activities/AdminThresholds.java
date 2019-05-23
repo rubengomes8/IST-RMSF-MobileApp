@@ -35,9 +35,13 @@ public class AdminThresholds extends AppCompatActivity {
 
     private EditText eTTemperature;
     private EditText eTHumidity;
+    private EditText eTgas;
+
     private Button apply;
     private int humidityTh;
     private int temperatureTh;
+    private int gasTh;
+
     private String URL;
     private int secret;
     private boolean valid;
@@ -52,6 +56,8 @@ public class AdminThresholds extends AppCompatActivity {
 
         eTTemperature = findViewById(R.id.temperatureBox);
         eTHumidity = findViewById(R.id.humidityBox);
+        eTgas = findViewById(R.id.gasBox);
+
         apply = findViewById(R.id.applyButton);
         getSupportActionBar().setTitle("Thresholds");
 
@@ -59,9 +65,13 @@ public class AdminThresholds extends AppCompatActivity {
         secret = intent.getIntExtra("secret", 0);
         temperatureTh = intent.getIntExtra("hTh", 0);
         humidityTh = intent.getIntExtra("tTh", 0);
+        gasTh = intent.getIntExtra("tTh", 0);
+
 
         eTTemperature.setText(Float.toString(temperatureTh));
         eTHumidity.setText(Float.toString(humidityTh));
+        eTgas.setText(Float.toString(gasTh));
+
 
 
         apply.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +80,9 @@ public class AdminThresholds extends AppCompatActivity {
 
                 humidityTh = Integer.valueOf(eTHumidity.getText().toString());
                 temperatureTh = Integer.valueOf(eTTemperature.getText().toString());
+                gasTh = Integer.valueOf(eTgas.getText().toString());
+
+
 
                 //Verificar ranges das grandezas
                 //Range do sensor da temperatura: 0 - 50ºC -> valor minimo 10 e valor maximo 40
@@ -83,7 +96,7 @@ public class AdminThresholds extends AppCompatActivity {
                 if(valid)
                 {
                     //Fazer Post para alterar os thresholds
-                    URL = "http://10.0.2.2:8000/admin/thresholds"; //URL do admin
+                    URL = "https://fire-240718.appspot.com/admin/thresholds/"; //URL do admin
                     //tenho de enviar temperature, humidity, e secret
 
                     StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
@@ -113,12 +126,14 @@ public class AdminThresholds extends AppCompatActivity {
                                 {
                                     e.printStackTrace();
                                 }
+
+                                newAct();
                             }
                             else
                             {
                                 //Do Nothing
                                 Toast.makeText(AdminThresholds.this, "Some error occured", Toast.LENGTH_LONG).show();
-
+                                newAct();
                             }
                         }
                     }, new Response.ErrorListener() {
@@ -135,6 +150,8 @@ public class AdminThresholds extends AppCompatActivity {
                             parameters.put("secret", Integer.toString(secret)); //secret
                             parameters.put("humidity", Integer.toString(humidityTh));//humidity
                             parameters.put("temperature", Integer.toString(temperatureTh));//temperature
+                            parameters.put("gas", Integer.toString(gasTh));//temperature
+
 
                             return parameters;
                         }
@@ -149,17 +166,23 @@ public class AdminThresholds extends AppCompatActivity {
                 }
 
 
-                Log.d("apply", "Changes applied");
-                Log.d("tag", "Humidity: " + Float.toString(humidityTh));
-                Log.d("tag", "Temperature: " + Float.toString(temperatureTh));
 
-
-                Intent intent2 = new Intent(AdminThresholds.this, MenuAdmin.class);
-                startActivity(intent2);
 
             }
         });
 
+
+
+    }
+
+    public void newAct(){
+        Log.d("apply", "Changes applied");
+        Log.d("tag", "Humidity: " + Float.toString(humidityTh));
+        Log.d("tag", "Temperature: " + Float.toString(temperatureTh));
+
+
+        Intent intent2 = new Intent(AdminThresholds.this, MenuAdmin.class);
+        startActivity(intent2);
     }
 
 }

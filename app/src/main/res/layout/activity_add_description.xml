@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:background="@color/colorBackground"
+    tools:context=".Activities.DeviceState">
+
+
+
+
+
+    <TextView
+        android:id="@+id/descTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description of the fire occurence"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#B1A1A1"
+        />
+
+
+    <EditText
+        android:id="@+id/descBox"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/descTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:textColorHint="#B1A1A1"
+        android:textColor="#B1A1A1"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+
+
+
+
+
+    <Button
+        android:id="@+id/addDescButton"
+        android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_corner_button"
+        android:textSize="20sp"
+        android:text="Add description"
+        android:textColor="#ffffff">
+
+    </Button>
+
+
+
+</RelativeLayout>

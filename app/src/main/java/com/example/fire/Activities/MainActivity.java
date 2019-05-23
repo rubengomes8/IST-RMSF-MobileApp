@@ -87,10 +87,9 @@ public class MainActivity extends AppCompatActivity {
                 if(checkBox.isChecked())
                 {
 
-                    /********************************************************************************************************
 
-                     Log.d("checkbox", "Sou Admin");
-                    URL = "http://10.0.2.2:8000/admin/"; //URL do admin
+                    Log.d("checkbox", "Sou Admin");
+                    URL = "https://fire-240718.appspot.com/admin/"; //URL do admin
 
 
                     //manda 'secret' -1 se não tiver bem
@@ -119,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
                                     {
                                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                                         //Começa nova atividade
-                                        Intent intent1 = new Intent(MainActivity.this, MenuAdmin.class)
+                                        Intent intent1 = new Intent(MainActivity.this, MenuAdmin.class);
                                         intent1.putExtra("secret", secret);
-                                        startActivty(intent1);
+                                        startActivity(intent1);
                                     }
 
 
@@ -155,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                     RequestQueue rQueue = Volley.newRequestQueue(MainActivity.this);
                     rQueue.add(request);
 
-                     *************************************************************************************************************/
 
                     //Começa nova atividade
                     Intent intent = new Intent(MainActivity.this, MenuAdmin.class);
@@ -167,13 +165,12 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Log.d("checkbox", "Não sou Admin");
 
-                    URL = "http://10.0.2.2:8000/app/"; //URL do user
+                    URL = "https://fire-240718.appspot.com/app/"; //URL do user
 
                     //manda 0 se não existir user
                     //manda 1 se existir
 
                     //se tiver dispositivos vai fazer um post para pedir o array de dispositivos
-/************************************************************************************************************************************
                     final StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -195,9 +192,11 @@ public class MainActivity extends AppCompatActivity {
                                     else if(check == 1) //Existe utilizador
                                     {
                                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
-
-                                        User user = new User(eTUsername.getText().toString(), eTPassword.getText().toString());
-
+                                        //User user = new User(eTUsername.getText().toString(), eTPassword.getText().toString());
+                                        Intent intent = new Intent(MainActivity.this, UserDevices.class);
+                                        intent.putExtra("username", eTUsername.getText().toString());
+                                        intent.putExtra("password", eTPassword.getText().toString());
+                                        startActivity(intent);
                                     }
 
                                 }
@@ -221,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> parameters = new HashMap<String, String>();
-                            parameters.put("email", eTUsername.getText().toString());
+                            parameters.put("username", eTUsername.getText().toString());
                             parameters.put("password", eTPassword.getText().toString());
                             return parameters;
                         }
@@ -230,11 +229,7 @@ public class MainActivity extends AppCompatActivity {
                     RequestQueue rQueue = Volley.newRequestQueue(MainActivity.this);
                     rQueue.add(request);
 
- *************************************************************************************************************/
 
-                    Intent intent = new Intent(MainActivity.this, UserDevices.class);
-                    intent.putExtra("username", eTUsername.getText().toString());
-                    startActivity(intent);
 
                 }
 

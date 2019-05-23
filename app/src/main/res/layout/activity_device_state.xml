@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:text="Relative humidity (%)"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="60dp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#B1A1A1"
@@ -31,7 +31,20 @@
         android:text="Temperature (ºC)"
         android:layout_below="@id/humidityTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#B1A1A1"
+        />
+
+    <TextView
+        android:id="@+id/gasTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gas (%)"
+        android:layout_below="@id/temperatureTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#B1A1A1"
@@ -40,33 +53,52 @@
 
 
     <EditText
-        android:id="@+id/humidityBox"
+        android:id="@+id/humidityBoxDS"
         android:layout_width="200dp"
         android:layout_height="30dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="90dp"
         android:background="#11000000"
         android:ems="10"
-        android:hint="@string/hint_humidity"
         android:textColorHint="#B1A1A1"
         android:textColor="#B1A1A1"
         android:textSize="20sp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:clickable="false"
+        android:focusable="false"/>
 
     <EditText
-        android:id="@+id/temperatureBox"
+        android:id="@+id/temperatureBoxDS"
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:layout_below="@id/humidityBox"
+        android:layout_below="@id/humidityBoxDS"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:background="#11000000"
         android:ems="10"
-        android:hint="@string/hint_temperature"
         android:textColorHint="#B1A1A1"
         android:textColor="#B1A1A1"
         android:textSize="20sp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:clickable="false"
+        android:focusable="false"/>
+
+    <EditText
+        android:id="@+id/gasBoxDS"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/temperatureBoxDS"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:textColorHint="#B1A1A1"
+        android:textColor="#B1A1A1"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:clickable="false"
+        android:focusable="false"
+        />
 
 
     <CheckBox
@@ -76,7 +108,7 @@
         android:layout_height="wrap_content"
         android:text="Alarm"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/temperatureBox"
+        android:layout_below="@id/gasBoxDS"
         android:layout_marginTop="50dp"
         android:textColor="#B1A1A1"
         android:textSize="20sp"

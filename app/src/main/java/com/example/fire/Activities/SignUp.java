@@ -36,7 +36,6 @@ public class SignUp extends AppCompatActivity {
     private EditText eTPassword2;
     private String password1;
     private String password2;
-    private String username;
     private String URL;
 
     @Override
@@ -52,7 +51,6 @@ public class SignUp extends AppCompatActivity {
         eTPassword2 = findViewById(R.id.passwordBox2);
         create = findViewById(R.id.createButton);
 
-        Intent intent = getIntent();
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,9 +66,8 @@ public class SignUp extends AppCompatActivity {
 
                 if(password1.equals(password2))
                 {
-                    username = eTUsername.getText().toString();
                     //post de {username, password}
-                    URL = "http://10.0.2.2:8000/app/signup/"; //URL do admin
+                    URL = "https://fire-240718.appspot.com/app/signup/"; //URL do admin
 
                     StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                         @Override
@@ -92,11 +89,12 @@ public class SignUp extends AppCompatActivity {
                                     else if(check == 1)
                                     {
                                         Toast.makeText(SignUp.this, "Account created successfully", Toast.LENGTH_LONG).show();
+                                        //Talvez fazer uma mudança de atividade para a Atividade de Login?
                                         Intent intent2 =  new Intent(SignUp.this, MainActivity.class);
                                         startActivity(intent2);
                                     }
 
-                                    //Talvez fazer uma mudança de atividade para a Atividade de Login?
+
 
                                 }
                                 catch(JSONException e)
