@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
         //getSupportActionBar().hide();
         PushNotifications.start(getApplicationContext(), "1a81f3fb-fa47-4820-9742-bf752a077700");
         //PushNotifications.addDeviceInterest("Leandro");
-        PushNotifications.addDeviceInterest("CEOroom");
-        PushNotifications.subscribe("hello");
+        //PushNotifications.subscribe("hello");
 
         eTUsername = findViewById(R.id.usernameBox);
         eTPassword = findViewById(R.id.passwordBox);

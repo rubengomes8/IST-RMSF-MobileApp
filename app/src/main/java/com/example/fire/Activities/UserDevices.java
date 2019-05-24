@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.fire.R;
 import com.example.fire.models.Device;
 import com.example.fire.models.User;
+import com.pusher.pushnotifications.PushNotifications;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,6 +93,8 @@ public class UserDevices extends AppCompatActivity {
                         //processa cada objeto e cria uma lista de Strings ou de devices e faz set do adapter
                         for (int i= 0; i< array.length(); i++){
                             JSONObject aux = new JSONObject(array.getJSONObject(i).getString("fields"));
+                            String dev_id = array.getJSONObject(i).getString("pk");
+                            PushNotifications.addDeviceInterest(dev_id);
                             devSet.put(aux.getString("localization"),Integer.parseInt(aux.getString("token")));
 
                             listLocals.add(aux.getString("localization"));
@@ -130,6 +133,10 @@ public class UserDevices extends AppCompatActivity {
         RequestQueue rQueue = Volley.newRequestQueue(UserDevices.this);
         rQueue.add(request);
         //Construir a lista com os items corretos
+
+
+
+
 
 
         fab.setOnClickListener(new View.OnClickListener() {
