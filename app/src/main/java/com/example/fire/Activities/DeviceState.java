@@ -38,6 +38,8 @@ public class DeviceState extends AppCompatActivity {
     private EditText eTGas;
     private Button showFiresB;
     private CheckBox checkBoxAlarm;
+    private CheckBox checkBoxPump;
+    private CheckBox checkBoxAlarmState;
     private int secret;
     private int alarmEnabled;
 
@@ -55,8 +57,8 @@ public class DeviceState extends AppCompatActivity {
 
         showFiresB = findViewById(R.id.showFiresButton);
         checkBoxAlarm = findViewById(R.id.checkBoxAlarm);
-
-
+        checkBoxPump = findViewById(R.id.checkBoxPump);
+        checkBoxAlarmState = findViewById(R.id.checkBoxAlarmState);
 
 
         Intent intent = getIntent();
@@ -70,6 +72,8 @@ public class DeviceState extends AppCompatActivity {
         {
             //checkBoxAlarm.setChecked(true);
             checkBoxAlarm.setEnabled(false);
+            checkBoxPump.setEnabled(false);
+            checkBoxAlarmState.setEnabled(false);
             showFiresB.setVisibility(View.GONE);
         }
 
@@ -199,6 +203,8 @@ public class DeviceState extends AppCompatActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> parameters = new HashMap<String, String>();
                             parameters.put("alarmEnable", "1");
+                            parameters.put("username", username);
+                            parameters.put("password", password);
                             return parameters;
                         }
                     };
@@ -249,6 +255,8 @@ public class DeviceState extends AppCompatActivity {
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> parameters = new HashMap<String, String>();
                             parameters.put("alarmEnable", "0"); //desativa
+                            parameters.put("username", username);
+                            parameters.put("password", password);
                             return parameters;
                         }
                     };
@@ -260,5 +268,232 @@ public class DeviceState extends AppCompatActivity {
 
             }
         });
+
+        checkBoxPump.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                boolean checked = ((CheckBox) v).isChecked();
+                if(checked)
+                {
+                    Toast.makeText(DeviceState.this, "Pump activated", Toast.LENGTH_LONG).show();
+                    Log.d("tag", "Pump activated");
+
+
+                    //Fazer Post para ativar o Pump
+                    URL = "https://fire-240718.appspot.com/app/bombState/";
+                    //manda POST com username e recebe os seus devices
+                    final StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("response", "onResponse: STRING " + response);
+
+                            if(!response.isEmpty())
+                            {
+                                try
+                                {
+                                    JSONObject object= new JSONObject(response);
+
+
+                                }
+                                catch(JSONException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                            else
+                            {
+                                //Do Nothing
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(DeviceState.this, "Some error occurred: " + error, Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> parameters = new HashMap<String, String>();
+                            parameters.put("bombState", "1");
+                            parameters.put("username", username);
+                            parameters.put("password", password);
+                            return parameters;
+                        }
+                    };
+
+                    RequestQueue rQueue = Volley.newRequestQueue(DeviceState.this);
+                    rQueue.add(request);
+                }
+                else
+                {
+                    Toast.makeText(DeviceState.this, "Pump desactivated", Toast.LENGTH_LONG).show();
+                    Log.d("tag", "Pump desactivated");
+
+                    //Fazer Post para desativar o Pump
+                    URL = "https://fire-240718.appspot.com/app/bombState/";
+                    //manda POST com username e recebe os seus devices
+                    final StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("response", "onResponse: STRING " + response);
+
+                            if(!response.isEmpty())
+                            {
+                                try
+                                {
+                                    JSONObject object= new JSONObject(response);
+
+
+                                }
+                                catch(JSONException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                            else
+                            {
+                                //Do Nothing
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(DeviceState.this, "Some error occurred: " + error, Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> parameters = new HashMap<String, String>();
+                            parameters.put("bombState", "0");
+                            parameters.put("username", username);
+                            parameters.put("password", password);
+                            return parameters;
+                        }
+                    };
+
+                    RequestQueue rQueue = Volley.newRequestQueue(DeviceState.this);
+                    rQueue.add(request);
+                }
+            }
+        });
+
+
+        checkBoxAlarmState.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                boolean checked = ((CheckBox) v).isChecked();
+                if(checked)
+                {
+                    Toast.makeText(DeviceState.this, "Alarm activated", Toast.LENGTH_LONG).show();
+                    Log.d("tag", "Alarm activated");
+
+
+                    //Fazer Post para ativar o Pump
+                    URL = "https://fire-240718.appspot.com/app/alarmState/";
+                    //manda POST com username e recebe os seus devices
+                    final StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("response", "onResponse: STRING " + response);
+
+                            if(!response.isEmpty())
+                            {
+                                try
+                                {
+                                    JSONObject object= new JSONObject(response);
+
+
+                                }
+                                catch(JSONException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                            else
+                            {
+                                //Do Nothing
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(DeviceState.this, "Some error occurred: " + error, Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> parameters = new HashMap<String, String>();
+                            parameters.put("alarmState", "1");
+                            parameters.put("username", username);
+                            parameters.put("password", password);
+                            return parameters;
+                        }
+                    };
+
+                    RequestQueue rQueue = Volley.newRequestQueue(DeviceState.this);
+                    rQueue.add(request);
+                }
+                else
+                {
+                    Toast.makeText(DeviceState.this, "Alarm desactivated", Toast.LENGTH_LONG).show();
+                    Log.d("tag", "Alarm desactivated");
+
+                    //Fazer Post para desativar o Pump
+                    URL = "https://fire-240718.appspot.com/app/alarmState/";
+                    //manda POST com username e recebe os seus devices
+                    final StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("response", "onResponse: STRING " + response);
+
+                            if(!response.isEmpty())
+                            {
+                                try
+                                {
+                                    JSONObject object= new JSONObject(response);
+
+
+                                }
+                                catch(JSONException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                            else
+                            {
+                                //Do Nothing
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(DeviceState.this, "Some error occurred: " + error, Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> parameters = new HashMap<String, String>();
+                            parameters.put("alarmState", "0");
+                            parameters.put("username", username);
+                            parameters.put("password", password);
+                            return parameters;
+                        }
+                    };
+
+                    RequestQueue rQueue = Volley.newRequestQueue(DeviceState.this);
+                    rQueue.add(request);
+                }
+            }
+        });
+
+
     }
 }

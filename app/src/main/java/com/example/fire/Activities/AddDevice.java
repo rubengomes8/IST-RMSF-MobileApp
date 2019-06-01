@@ -76,7 +76,7 @@ public class AddDevice extends AppCompatActivity {
                                 {
                                     Toast.makeText(AddDevice.this, "New device added successfully", Toast.LENGTH_LONG).show();
                                     //Talvez fazer uma mudança de atividade para a Atividade de Login?
-                                    Intent intent2 =  new Intent(AddDevice.this, MainActivity.class);
+                                    Intent intent2 =  new Intent(AddDevice.this, UserDevices.class);
                                     intent2.putExtra("username", username);
                                     intent2.putExtra("password", password);
                                     startActivity(intent2);

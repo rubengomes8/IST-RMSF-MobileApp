@@ -74,8 +74,8 @@ public class AllFiresAdmin extends AppCompatActivity {
                             String pk = array.getJSONObject(i).getString("pk");
                             Log.d("fields", "pk " + pk);
                             String subDate = aux.getString("date").substring(0,10);
-                            fires.add("Data: " + subDate + "                    " + "Device ID: " + aux.getString("device"));
-                            positionDescription.put(Integer.toString(i), aux.getString("description") + " " + Integer.toString(i));
+                            fires.add("Date: " + subDate + "       " + "Device ID: " + aux.getString("device"));
+                            positionDescription.put(Integer.toString(i), aux.getString("description"));
                             positionDate.put(Integer.toString(i), subDate);
                             positionID.put(Integer.toString(i), pk);
 
@@ -134,13 +134,13 @@ public class AllFiresAdmin extends AppCompatActivity {
                     }
                     else
                     {
-                        Snackbar.make(view, "Descrição: " + description, Snackbar.LENGTH_LONG)
+                        Snackbar.make(view, "Description: " + description, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                 }
                 else
                 {
-                    Snackbar.make(view, "Descrição: " + description, Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "Description: " + description, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
 

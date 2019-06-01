@@ -91,7 +91,7 @@ public class AdminThresholds extends AppCompatActivity {
                 //Range do sensor da temperatura: 0 - 50ºC -> valor minimo 10 e valor maximo 40
                 //Range do sensor de humidade relativa: 20% a 90% -> valor minimo 30 e valor maximo 80
 
-                if(temperatureTh >= 10 && temperatureTh <= 40 && humidityTh >= 30 && humidityTh <= 80)
+                if(temperatureTh >= 10 && temperatureTh <= 40 && humidityTh >= 30 && humidityTh <= 80 && gasTh >= 0 && gasTh <= 99)
                     valid = true;
                 else
                     valid = false;

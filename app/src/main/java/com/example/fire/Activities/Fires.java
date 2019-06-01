@@ -85,8 +85,8 @@ public class Fires extends AppCompatActivity {
                             String pk = array.getJSONObject(i).getString("pk");
                             Log.d("fields", "pk " + pk);
                             String subDate = aux.getString("date").substring(0,10);
-                            fires.add("Data: " + subDate + "                    " + "Device ID: " + aux.getString("device"));
-                            positionDescription.put(Integer.toString(i), aux.getString("description") + " " + Integer.toString(i));
+                            fires.add("Date: " + subDate + "                    " + "Device ID: " + aux.getString("device"));
+                            positionDescription.put(Integer.toString(i), aux.getString("description"));
 
                         }
 
@@ -130,7 +130,7 @@ public class Fires extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String description = positionDescription.get(Integer.toString(position));
-                Snackbar.make(view, "Descrição: " + description, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Description: " + description, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
