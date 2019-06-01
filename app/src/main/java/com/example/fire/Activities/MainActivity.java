@@ -154,11 +154,6 @@ public class MainActivity extends AppCompatActivity {
                     rQueue.add(request);
 
 
-                    //Começa nova atividade
-                    Intent intent = new Intent(MainActivity.this, MenuAdmin.class);
-                    intent.putExtra("secret", secret);
-                    startActivity(intent);
-
                 }
                 else
                 {

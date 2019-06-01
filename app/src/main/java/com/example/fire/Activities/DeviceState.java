@@ -39,6 +39,7 @@ public class DeviceState extends AppCompatActivity {
     private Button showFiresB;
     private CheckBox checkBoxAlarm;
     private int secret;
+    private int alarmEnabled;
 
     private String URL;
 
@@ -95,7 +96,15 @@ public class DeviceState extends AppCompatActivity {
                         eTGas.setText(Integer.toString(object.getInt("gas")));
 
                         //receber alarm enabled or disabled.
-
+                        alarmEnabled = object.getInt("alarmEnable");
+                        if(alarmEnabled == 1)
+                        {
+                            checkBoxAlarm.setChecked(true);
+                        }
+                        else
+                        {
+                            checkBoxAlarm.setChecked(false);
+                        }
                     }
                     catch(JSONException e)
                     {

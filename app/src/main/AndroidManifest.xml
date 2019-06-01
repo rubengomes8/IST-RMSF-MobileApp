@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.NewDeviceAdmin"></activity>
+        <activity android:name=".Activities.RemoveDevice"></activity>
+        <activity android:name=".Activities.RemoveUser" />
+        <activity android:name=".Activities.NewDeviceAdmin" />
         <activity android:name=".Activities.AddDescription" />
         <activity android:name=".Activities.AllFiresAdmin" />
         <activity

@@ -32,10 +32,11 @@ import java.util.Map;
 
 public class MenuAdmin extends AppCompatActivity {
 
-    private String [] menuAdminOptions = {"Users", "Fires", "Thresholds", "AllDevices"};
+    private String [] menuAdminOptions = {"Users", "Fires", "Thresholds", "All devices", "Remove user", "Remove device"};
     int secret;
     private int humidityTh;
     private int temperatureTh;
+    private int carbonTh;
     private String URL;
 
 
@@ -82,7 +83,7 @@ public class MenuAdmin extends AppCompatActivity {
                             startActivity(intent2);
                         }
 
-                        else if(option.equals("AllDevices"))
+                        else if(option.equals("All devices"))
                         {
                             //Fazer um POST com o secret e receber um JSONArray com todos os devices
                             Intent intent2 = new Intent(MenuAdmin.this, AllDevicesAdmin.class);
@@ -100,7 +101,7 @@ public class MenuAdmin extends AppCompatActivity {
                             //manda POST com secret e recebe 2 thresholds (humidity, temperature)
 
 
-                            final StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                            final StringRequest request = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
                                     Log.d("response", "onResponse: STRING " + response);
@@ -114,6 +115,17 @@ public class MenuAdmin extends AppCompatActivity {
                                             Log.d("object", "onResponse: JSON " + object);
                                             humidityTh = object.getInt("humidity");
                                             temperatureTh = object.getInt("temperature");
+                                            carbonTh = object.getInt("gas");
+                                            //Abrir actividade onde pode ver o valor dos thresholds de humidade e temperatura e pode alterá-los
+                                            Intent intent2 = new Intent(MenuAdmin.this, AdminThresholds.class);
+                                            intent2.putExtra("secret", secret);
+                                            intent2.putExtra("hTh", humidityTh);
+                                            intent2.putExtra("tTh", temperatureTh);
+                                            intent2.putExtra("cTh", carbonTh);
+                                            Log.d("th_tag", Integer.toString(humidityTh));
+                                            Log.d("th_tag", Integer.toString(temperatureTh));
+                                            Log.d("th_tag", Integer.toString(carbonTh));
+                                            startActivity(intent2);
 
                                         }
                                         catch(JSONException e)
@@ -138,7 +150,7 @@ public class MenuAdmin extends AppCompatActivity {
                                     Map<String, String> parameters = new HashMap<String, String>();
 
                                     Log.d("secretC", Integer.toString(secret));
-                                    parameters.put("secret", Integer.toString(secret));
+                                    //parameters.put("secret", Integer.toString(secret));
                                     return parameters;
                                 }
                             };
@@ -146,13 +158,18 @@ public class MenuAdmin extends AppCompatActivity {
                             RequestQueue rQueue = Volley.newRequestQueue(MenuAdmin.this);
                             rQueue.add(request);
 
-                            //Abrir actividade onde pode ver o valor dos thresholds de humidade e temperatura e pode alterá-los
-                            Intent intent2 = new Intent(MenuAdmin.this, AdminThresholds.class);
+                        }
+                        else if(option.equals("Remove user"))
+                        {
+                            Intent intent2 = new Intent(MenuAdmin.this, RemoveUser.class);
                             intent2.putExtra("secret", secret);
-                            intent2.putExtra("hTh", humidityTh);
-                            intent2.putExtra("tTh", temperatureTh);
                             startActivity(intent2);
-
+                        }
+                        else if(option.equals("Remove device"))
+                        {
+                            Intent intent2 = new Intent(MenuAdmin.this, RemoveDevice.class);
+                            intent2.putExtra("secret", secret);
+                            startActivity(intent2);
                         }
 
                     }

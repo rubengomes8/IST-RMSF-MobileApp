@@ -63,14 +63,17 @@ public class AdminThresholds extends AppCompatActivity {
 
         Intent intent = getIntent();
         secret = intent.getIntExtra("secret", 0);
-        temperatureTh = intent.getIntExtra("hTh", 0);
-        humidityTh = intent.getIntExtra("tTh", 0);
-        gasTh = intent.getIntExtra("tTh", 0);
+        temperatureTh = intent.getIntExtra("tTh", 0);
+        humidityTh = intent.getIntExtra("hTh", 0);
+        gasTh = intent.getIntExtra("cTh", 0);
 
+        Log.d("setText", Integer.toString(temperatureTh));
+        Log.d("setText", Integer.toString(humidityTh));
+        Log.d("setText", Integer.toString(gasTh));
 
-        eTTemperature.setText(Float.toString(temperatureTh));
-        eTHumidity.setText(Float.toString(humidityTh));
-        eTgas.setText(Float.toString(gasTh));
+        eTTemperature.setText(Integer.toString(temperatureTh));
+        eTHumidity.setText(Integer.toString(humidityTh));
+        eTgas.setText(Integer.toString(gasTh));
 
 
 
@@ -120,20 +123,18 @@ public class AdminThresholds extends AppCompatActivity {
                                         Toast.makeText(AdminThresholds.this, "Some error occured", Toast.LENGTH_LONG).show();
 
                                     }
+                                    Intent intent2 = new Intent(AdminThresholds.this, MenuAdmin.class);
+                                    startActivity(intent2);
 
                                 }
-                                catch(JSONException e)
-                                {
+                                catch(JSONException e) {
                                     e.printStackTrace();
                                 }
-
-                                newAct();
                             }
                             else
                             {
                                 //Do Nothing
                                 Toast.makeText(AdminThresholds.this, "Some error occured", Toast.LENGTH_LONG).show();
-                                newAct();
                             }
                         }
                     }, new Response.ErrorListener() {
@@ -175,14 +176,6 @@ public class AdminThresholds extends AppCompatActivity {
 
     }
 
-    public void newAct(){
-        Log.d("apply", "Changes applied");
-        Log.d("tag", "Humidity: " + Float.toString(humidityTh));
-        Log.d("tag", "Temperature: " + Float.toString(temperatureTh));
 
-
-        Intent intent2 = new Intent(AdminThresholds.this, MenuAdmin.class);
-        startActivity(intent2);
-    }
 
 }
