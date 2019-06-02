@@ -84,6 +84,9 @@ public class AdminThresholds extends AppCompatActivity {
                 humidityTh = Integer.valueOf(eTHumidity.getText().toString());
                 temperatureTh = Integer.valueOf(eTTemperature.getText().toString());
                 gasTh = Integer.valueOf(eTgas.getText().toString());
+                Log.d("thresholds", Integer.toString(humidityTh));
+                Log.d("thresholds", Integer.toString(temperatureTh));
+                Log.d("thresholds", Integer.toString(gasTh));
 
 
 
@@ -124,6 +127,7 @@ public class AdminThresholds extends AppCompatActivity {
 
                                     }
                                     Intent intent2 = new Intent(AdminThresholds.this, MenuAdmin.class);
+                                    intent2.putExtra("secret", secret);
                                     startActivity(intent2);
 
                                 }
@@ -163,7 +167,7 @@ public class AdminThresholds extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(AdminThresholds.this, "Temperature should be in [10, 40] ºC\nHumidity should be in [30, 80] %",Toast.LENGTH_LONG).show();
+                    Toast.makeText(AdminThresholds.this, "Temperature should be in [10, 40] ºC\nHumidity should be in [30, 80] %\nGas should be in [0, 99]%",Toast.LENGTH_LONG).show();
                 }
 
 
