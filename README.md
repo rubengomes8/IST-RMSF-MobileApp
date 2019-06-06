@@ -1,7 +1,7 @@
-# fire
-App de RMSF - Deteção de incêndio
+# fire - Deteção de incêndio
 
-Este repositório contém uma aplicação Android desenvolvida no âmbito de uma unidade curricular designada "Redes Móveis e Sem Fios".
+
+Este repositório contém uma aplicação *Android* desenvolvida no âmbito de uma unidade curricular designada **Redes Móveis e Sem Fios**.
 
 A aplicação permite 2 modos de autenticação (modo administrador ou modo utilizador)
 
