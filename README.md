@@ -27,4 +27,4 @@ Através da aplicação o administrador poderá:
 
 Associado a este repositório estão outros 2 que contém o servidor *web* desenvolvido em *Python* e o código *Arduino* desenvolvido para cada dispositivo.
 
-Autores: Rúben Gomes e Leandro Almeida
+Autores: **Rúben Gomes** e **Leandro Almeida**
